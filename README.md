@@ -4,7 +4,7 @@ Public documentation repository for JuraApp.
 
 ## Website
 
-Visit [jurapp.de](https://jurapp.de) for the full documentation.
+Visit [jurapp.com](https://jurapp.com) for the full documentation.
 
 ## Repository Structure
 
