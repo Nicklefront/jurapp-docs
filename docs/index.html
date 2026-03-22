@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Download JuraApp</title>
+
+  <!-- Google Fonts: Inter -->
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap" rel="stylesheet" />
+
+  <link rel="stylesheet" href="styles.css" />
+</head>
+<body>
+
+  <div class="card">
+    <!-- Replace the emoji with an <img> tag for your app icon -->
+    <span class="app-icon">🚀</span>
+
+    <h1 id="app-name">My App</h1>
+    <p class="tagline" id="app-tagline">A short description of your awesome application.</p>
+
+    <span class="version-badge" id="release-version">loading…</span>
+
+    <div id="download-buttons">
+      <p class="loading">Fetching latest release…</p>
+    </div>
+
+    <p id="error-message"></p>
+  </div>
+
+  <!-- Config first, then icons, then logic -->
+  <script src="js/config.js"></script>
+  <script src="js/icons.js"></script>
+  <script src="js/releases.js"></script>
+
+  <script>
+    // Populate app name & tagline from config
+    if (typeof APP_NAME !== "undefined") {
+      document.getElementById("app-name").textContent = APP_NAME;
+      document.title = "Download " + APP_NAME;
+    }
+    if (typeof APP_TAGLINE !== "undefined") {
+      document.getElementById("app-tagline").textContent = APP_TAGLINE;
+    }
+  </script>
+
+</body>
+</html>

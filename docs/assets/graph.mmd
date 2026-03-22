@@ -1,0 +1,49 @@
+graph TD
+    classDef hardware fill:#1e88e5,stroke:#0d47a1,stroke-width:3px,color:#ffffff;
+    classDef software fill:#f57c00,stroke:#e65100,stroke-width:3px,color:#ffffff;
+    classDef access fill:#d32f2f,stroke:#b71c1c,stroke-width:3px,color:#ffffff,stroke-dasharray: 5 5;
+    classDef roadmap fill:#388e3c,stroke:#1b5e20,stroke-width:3px,color:#ffffff;
+    classDef milestone fill:#7b1fa2,stroke:#4a148c,stroke-width:3px,color:#ffffff;
+
+    subgraph S1[Infrastruktur und Zugang]
+        direction TB
+        Server[SAP S4HANA Server oder HANA Sandbox]:::access
+        User[SAP Developer User mit Entwicklerschluessel]:::access
+        Server -->|Muss vorhanden sein| User
+    end
+
+    subgraph S2[Lokale Einrichtung Zeitaufwand]
+        direction TB
+        PC[Lokaler PC oder Laptop]:::hardware
+        GUI[SAP GUI for Windows Download ca 1GB Install ca 45 Minuten]:::software
+        Eclipse[Eclipse IDE mit ADT Plugin Install ca 30 Minuten Java JDK noetig]:::software
+        PC --> GUI
+        PC --> Eclipse
+        GUI -.->|Verbindet zu| Server
+        Eclipse -.->|Verbindet zu| Server
+    end
+
+    subgraph S3[Roadmap Abhaengigkeiten]
+        direction TB
+        Phase1[Tage 1 bis 10 Klassisches ABAP]:::roadmap
+        Phase2[Tage 11 bis 15 HANA Datenbank]:::roadmap
+        Phase3[Tage 16 bis 20 Modernes ABAP]:::roadmap
+        User -->|Schreibrechte notwendig| Phase1
+        GUI -->|Hauptwerkzeug| Phase1
+        Server -->|HANA Features notwendig| Phase2
+        Eclipse -->|Zwingend fuer CDS und AMDP| Phase3
+        User -->|Berechtigung fuer ADT| Phase3
+    end
+
+    subgraph S4[Checkliste vor Tag 1]
+        direction TB
+        Check1[Check Server Typ Ist System S4HANA oder Suite on HANA]:::milestone
+        Check2[Check Eclipse Installation ADT installiert und getestet]:::milestone
+        Check3[Check User Rechte Kannst du in SE11 eine Tabelle ZTEST anlegen]:::milestone
+        Check1 --> Check2
+        Check2 --> Check3
+    end
+
+    S1 --> S2
+    S2 --> S3
+    S3 --> S4
